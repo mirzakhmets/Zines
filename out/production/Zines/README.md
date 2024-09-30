@@ -1,2 +1,2 @@
 # Zines
- Textual Database System
+ NoSQL Textual Database

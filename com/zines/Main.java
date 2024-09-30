@@ -37,7 +37,7 @@
 /*  37 */     String query = null;
 /*     */     
 /*  39 */     int i = 0;
-/*     */     
+/*     */
 /*  41 */     while (i < args.length) {
 /*  42 */       String arg = args[i].toLowerCase();
 /*     */       
@@ -47,45 +47,45 @@
 /*  47 */         engine.matchGap = Integer.parseInt(args[i]);
 /*     */         
 /*  49 */         i++; continue;
-/*  50 */       }  if (arg.equals("-r")) {
+/*  50 */       } else if (arg.equals("-r")) {
 /*  51 */         i++;
 /*     */         
 /*  53 */         engine.goldenRatio = Float.parseFloat(args[i]);
 /*     */         
 /*  55 */         i++; continue;
-/*  56 */       }  if (arg.equals("-mr")) {
+/*  56 */       }  else if (arg.equals("-mr")) {
 /*  57 */         i++;
 /*     */         
 /*  59 */         engine.minGoldenRatio = Float.parseFloat(args[i]);
 /*     */         
 /*  61 */         i++; continue;
-/*  62 */       }  if (arg.equals("-i")) {
+/*  62 */       }  else if (arg.equals("-i")) {
 /*  63 */         i++;
 /*     */         
 /*  65 */         engine.ignoreCase = true; continue;
-/*  66 */       }  if (arg.equals("-p")) {
+/*  66 */       }  else if (arg.equals("-p")) {
 /*  67 */         i++;
 /*     */         
 /*  69 */         engine.doPreciseSearch = true; continue;
-/*  70 */       }  if (arg.equals("-x")) {
+/*  70 */       }  else if (arg.equals("-x")) {
 /*  71 */         i++;
 /*     */         
 /*  73 */         doExact = true; continue;
-/*  74 */       }  if (arg.equals("-recursive")) {
+/*  74 */       } else if (arg.equals("-recursive")) {
 /*  75 */         i++;
 /*     */         
 /*  77 */         doRecrusive = true; continue;
-/*  78 */       }  if (arg.equals("-q")) {
+/*  78 */       } else if (arg.equals("-q")) {
 /*  79 */         i++;
 /*     */         
 /*  81 */         query = args[i];
-/*     */         
+/*     */
 /*  83 */         i++;
-/*     */       } 
+/*     */       } else break;
 /*     */     } 
 /*     */ 
-/*     */ 
-/*     */     
+/*     */
+    /*     */
 /*  89 */     if (query == null && i < args.length) {
 /*  90 */       query = readFile(args[i]);
 /*     */       
@@ -94,14 +94,31 @@
 /*     */     
 /*  95 */     if (i >= args.length) {
 /*  96 */       System.out.println("Zines NoSQL Database System");
-/*     */       
-/*     */       return;
+
+                /*
+                test1();
+
+                test2();
+                */
+
+                System.out.println("Usage: [-g <gap> | -r <ratio> | -mr <min_ratio> | -i | -p | -x | -recursive | -q <query>] <query_file> <files_directories...>");
+
+                System.out.println("\t-g define the matching gap");
+                System.out.println("\t-r define the matching ratio");
+                System.out.println("\t-mr define the minimal matching ratio");
+                System.out.println("\t-i ignore case");
+                System.out.println("\t-p do precise search");
+                System.out.println("\t-x do exact");
+                System.out.println("\t-recursive do recursive search");
+                System.out.println("\t-q define query string");
+
+        /*     */       return;
 /*     */     } 
 /* 100 */     if (query == null) {
 /* 101 */       System.out.println("Empty query");
 /*     */       
 /*     */       return;
-/*     */     } 
+/*     */     }
 /* 105 */     for (; i < args.length; i++) {
 /* 106 */       System.out.println("Searching: " + args[i]);
 /*     */       
@@ -117,7 +134,7 @@
 /* 117 */     int total = 0;
 /*     */     
 /* 119 */     File file = new File(path);
-/*     */     
+/*     */
 /* 121 */     if (file.isDirectory()) {
 /* 122 */       File[] files = file.listFiles();
 /*     */       
@@ -167,11 +184,11 @@
 /*     */   }
 /*     */   
 /*     */   public static void test1() {
-/* 170 */     System.out.println(search(new Engine(), "was", "src/com/zines/tests", true, true));
+/* 170 */     System.out.println(search(new Engine(), "was", "com/zines/tests", true, true));
 /*     */   }
 /*     */   
 /*     */   public static void test2() {
-/* 174 */     System.out.println(search(new Engine(), "was", "src/com/zines/tests", false, true));
+/* 174 */     System.out.println(search(new Engine(), "was", "com/zines/tests", false, true));
 /*     */   }
 /*     */ }
 
